@@ -1,5 +1,141 @@
 {% extends "blog/base.html" %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <!-- Hero Section -->
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h1 class="display-3 fw-bold text-gradient mb-3">Hello, World! 👋</h1>
+                <div class="lead">Aspiring Developer & Tech Enthusiast</div>
+            </div>
 
-{% block content%}
-    <h1>This is from about section</h1>
-{% endblock%}
+            <!-- Profile Card -->
+            <div class="profile-card mb-5" data-aos="zoom-in">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <div class="profile-image-container">
+                            <div class="profile-image">
+                                <i class="bi bi-person-circle display-1"></i>
+                            </div>
+                            <div class="profile-badges">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-success">Django</span>
+                                <span class="badge bg-info">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="profile-info">
+                            <h2 class="fw-bold mb-3">About Me</h2>
+                            <p class="lead">
+                                Recent ICT graduate from Islamic University, Kushtia, Bangladesh (October 2024).
+                            </p>
+                            <p>
+                                Passionate about problem-solving and software development. Always eager to learn and explore new technologies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section mb-5">
+                <h2 class="text-center fw-bold mb-4" data-aos="fade-up">Technical Expertise</h2>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                        <div class="skill-card" onclick="toggleSkillDetails(this)">
+                            <div class="skill-card-inner">
+                                <div class="skill-front">
+                                    <i class="bi bi-code-square display-4 mb-3"></i>
+                                    <h4>Programming</h4>
+                                </div>
+                                <div class="skill-back">
+                                    <ul class="list-unstyled">
+                                        <li>Python Programming</li>
+                                        <li>Data Structures</li>
+                                        <li>Algorithms</li>
+                                        <li>Problem Solving</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                        <div class="skill-card" onclick="toggleSkillDetails(this)">
+                            <div class="skill-card-inner">
+                                <div class="skill-front">
+                                    <i class="bi bi-database display-4 mb-3"></i>
+                                    <h4>Database</h4>
+                                </div>
+                                <div class="skill-back">
+                                    <ul class="list-unstyled">
+                                        <li>DMBS</li>
+                                        <li>SQL</li>
+                                        <li>MySQL</li>
+                                        <li>PostgreSQL</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+                        <div class="skill-card" onclick="toggleSkillDetails(this)">
+                            <div class="skill-card-inner">
+                                <div class="skill-front">
+                                    <i class="bi bi-git display-4 mb-3"></i>
+                                    <h4>Version Control</h4>
+                                </div>
+                                <div class="skill-back">
+                                    <ul class="list-unstyled">
+                                        <li>Git</li>
+                                        <li>GitHub</li>
+                                        <li>Collaborative Development</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests Section -->
+            <div class="interests-section mb-5" data-aos="fade-up">
+                <h2 class="text-center fw-bold mb-4">Beyond Tech</h2>
+                <div class="interest-cards">
+                    <div class="interest-card" onmouseover="showInterestDetails(this)" onmouseout="hideInterestDetails(this)">
+                        <i class="bi bi-airplane"></i>
+                        <span>Travel</span>
+                        <div class="interest-details">Exploring new places and cultures</div>
+                    </div>
+                    <div class="interest-card" onmouseover="showInterestDetails(this)" onmouseout="hideInterestDetails(this)">
+                        <i class="bi bi-cup-hot"></i>
+                        <span>Food</span>
+                        <div class="interest-details">Discovering local cuisines</div>
+                    </div>
+                    <div class="interest-card" onmouseover="showInterestDetails(this)" onmouseout="hideInterestDetails(this)">
+                        <i class="bi bi-book"></i>
+                        <span>Learning</span>
+                        <div class="interest-details">Continuous self-improvement</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connect Section -->
+            <div class="connect-section text-center" data-aos="fade-up">
+                <h2 class="fw-bold mb-4">Let's Connect</h2>
+                <div class="social-links">
+                    <a href="https://github.com/Oyshik-ICT" target="_blank" class="social-link github" data-tooltip="Check my GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/oyshikfaiyaz/" target="_blank" class="social-link linkedin" data-tooltip="Connect on LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="mailto:oyshikf@gmail.com" target="_blank" class="social-link email" data-tooltip="Send me an email">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
