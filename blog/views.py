@@ -36,6 +36,14 @@ class UserPostListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
         return Posts.objects.filter(author=user).order_by("-date_posted")
+    
+class LatestPostListView(ListView):
+    model = Posts
+    template_name = "blog/latest_posts.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Posts.objects.all().order_by("-date_posted")[:3]
 
 
 class PostDetailView(DetailView):

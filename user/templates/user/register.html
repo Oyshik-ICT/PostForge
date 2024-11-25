@@ -1,20 +1,34 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags%}
+{% load crispy_forms_tags %}
 
-{% block content%}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend>Hey, Welcome. Join Today ?</legend>
-                {{ form|crispy}}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
+{% block content %}
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-9">
+            <div class="card shadow-sm">
+                <div class="card-body py-3">
+                    <h3 class="card-title text-center mb-3">Hey, Welcome. Join Today?</h3>
+                    
+                    <form method="POST" class="row justify-content-center">
+                        {% csrf_token %}
+                        <div class="col-11 mb-3">
+                            {{ form|crispy }}
+                        </div>
+                        
+                        <div class="col-11">
+                            <div class="d-grid">
+                                <button class="btn btn-primary py-2" type="submit">Create Account</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class="text-center mt-3 pt-2 border-top">
+                        <span class="text-muted">Already have an account?</span>
+                        <a href="{% url 'login' %}" class="ms-2 text-decoration-none">Sign In</a>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">Already have an account?</small> <a class="ml-2"href="{%url 'login' %}" >Sign In</a>
         </div>
     </div>
-{% endblock%}
+</div>
+{% endblock %}
