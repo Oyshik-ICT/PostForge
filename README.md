@@ -39,7 +39,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 5. Create Superuser (Optional)
+### 5. Create Superuser
 ```bash
 python manage.py createsuperuser
 ```
