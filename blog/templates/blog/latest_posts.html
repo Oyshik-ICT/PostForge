@@ -17,6 +17,21 @@
                 </div>
                 <h2 class="card-title"><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
                 <div class="card-text">{{ post.content }}</div>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-primary like-btn me-2" 
+                        data-post-id="{{ post.id }}"
+                        data-liked="{% if request.user in post.likes.all %}true{% else %}false{% endif %}">
+                        <i class="bi bi-hand-thumbs-up"></i> 
+                        <span class="likes-count">{{ post.total_likes }}</span>
+                    </button>
+
+                    <button class="btn btn-outline-danger dislike-btn" 
+                            data-post-id="{{ post.id }}"
+                            data-disliked="{% if request.user in post.dislikes.all %}true{% else %}false{% endif %}">
+                        <i class="bi bi-hand-thumbs-down"></i> 
+                        <span class="dislikes-count">{{ post.total_dislikes }}</span>
+                    </button>
+                </div>
             </div>
         </article>
     {% endfor %}

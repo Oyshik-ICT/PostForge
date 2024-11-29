@@ -9,6 +9,8 @@ class Posts(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name="liked_posts", blank=True)
+    dislikes = models.ManyToManyField(User, related_name="disliked_posts", blank=True)
 
     class Meta:
         verbose_name = "Post"
@@ -26,3 +28,9 @@ class Posts(models.Model):
         except Exception as e:
             print(f"Error generating URL for post {self.pk}: {e}")
             return "/"
+    
+    def total_likes(self):
+        return self.likes.count()
+    
+    def total_dislikes(self):
+        return self.dislikes.count()

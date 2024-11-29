@@ -33,6 +33,21 @@
             
             <h2 class="card-title mb-3 text-decoration-underline">{{ object.title }}</h2>
             <div class="card-text">{{ object.content }}</div>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-outline-primary like-btn me-2" 
+                    data-post-id="{{ object.id }}"
+                    data-liked="{% if request.user in object.likes.all %}true{% else %}false{% endif %}">
+                    <i class="bi bi-hand-thumbs-up"></i> 
+                    <span class="likes-count">{{ object.total_likes }}</span>
+                </button>
+
+                <button class="btn btn-outline-danger dislike-btn" 
+                        data-post-id="{{ object.id }}"
+                        data-disliked="{% if request.user in object.dislikes.all %}true{% else %}false{% endif %}">
+                    <i class="bi bi-hand-thumbs-down"></i> 
+                    <span class="dislikes-count">{{ object.total_dislikes }}</span>
+                </button>
+            </div>
         </div>
     </article>
 </div>

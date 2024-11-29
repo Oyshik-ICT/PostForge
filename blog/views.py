@@ -1,16 +1,12 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.forms import BaseModelForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
 from .models import Posts
 
@@ -159,3 +155,80 @@ def about(request):
     except Exception as e:
         messages.error(request, f"Error rendering about page: {str(e)}")
         return redirect("blog-home")
+
+
+@login_required
+def like_post(request, pk):
+    """
+    Allows logged-in users to like or unlike a post,
+    automatically removing any existing dislike.
+
+    """
+    try:
+        post = get_object_or_404(Posts, pk=pk)
+        uList = post.likes.all()
+
+        if request.user in uList:
+            post.likes.remove(request.user)
+
+        else:
+            post.likes.add(request.user)
+            post.dislikes.remove(request.user)
+
+        return JsonResponse(
+            {
+                "likes": post.total_likes(),
+                "dislikes": post.total_dislikes(),
+                "liked": request.user in uList,
+                "disliked": request.user in uList,
+            }
+        )
+    except Exception as e:
+        return JsonResponse(
+            {
+                "error": str(e),
+                "likes": 0,
+                "dislikes": 0,
+                "liked": False,
+                "disliked": False,
+            },
+            status=400,
+        )
+
+
+@login_required
+def dislike_post(request, pk):
+    """
+    Allows logged-in users to dislike or undislike a post,
+    automatically removing any existing like.
+    """
+    try:
+        post = get_object_or_404(Posts, pk=pk)
+        uList = post.dislikes.all()
+
+        if request.user in uList:
+            post.dislikes.remove(request.user)
+
+        else:
+            post.dislikes.add(request.user)
+            post.likes.remove(request.user)
+
+        return JsonResponse(
+            {
+                "likes": post.total_likes(),
+                "dislikes": post.total_dislikes(),
+                "liked": request.user in uList,
+                "disliked": request.user in uList,
+            }
+        )
+    except Exception as e:
+        return JsonResponse(
+            {
+                "error": str(e),
+                "likes": 0,
+                "dislikes": 0,
+                "liked": False,
+                "disliked": False,
+            },
+            status=400,
+        )
